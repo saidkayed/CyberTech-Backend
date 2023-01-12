@@ -1,8 +1,9 @@
 ﻿using CyberTech_Backend.Controllers.DTO;
 using CyberTech_Backend.Data;
 using CyberTech_Backend.Helper;
-using CyberTech_Backend.Model;
+using CyberTech_Backend.Models;
 using CyberTech_Backend.Repository.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace CyberTech_Backend.Repository;
 
@@ -23,6 +24,8 @@ public class PlayerRepository : IPlayerRepository
         {
             Email = player.Email,
             PasswordHash = HashedPassword,
+            Username = player.Username
+
         };
 
         _context.Player.Add(p);
@@ -36,7 +39,7 @@ public class PlayerRepository : IPlayerRepository
 
         if (player != null)
         {
-            _context.CyberTech.Remove(player);
+            _context.Player.Remove(player);
             await _context.SaveChangesAsync();
         }
     }
@@ -45,7 +48,7 @@ public class PlayerRepository : IPlayerRepository
         //return all player with only email
         return _context.Player.Select(p => new Player
         {
-            Email = p.Email
+            Email = p.Email,
         }).ToListAsync();
     }
     public async Task<Player> GetPlayerById(int id)

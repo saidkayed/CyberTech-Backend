@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-using CyberTech_Backend.Models;
 
-namespace CyberTech_Backend.Model;
+namespace CyberTech_Backend.Models;
 
 
 public class Player
@@ -15,7 +14,8 @@ public class Player
     {
         get; set;
     }
-
+    public int CyberTechId { get; set; }
+    
     [ForeignKey("CyberTechId")]
     public CyberTech? CyberTech
     {
@@ -27,10 +27,6 @@ public class Player
         get; set;
     }
     public string PasswordHash
-    {
-        get; set;
-    }
-    public byte[] PasswordSalt
     {
         get; set;
     }

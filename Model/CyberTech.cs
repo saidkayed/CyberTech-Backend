@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-using CyberTech_Backend.Model;
+
 
 namespace CyberTech_Backend.Models;
 
@@ -63,9 +63,7 @@ public class CyberTech
         get; set;
     }
 
+    public int PlayerId { get; set; }
     [ForeignKey("PlayerId")]
-    public Player? Player
-    {
-        get; set;
-    }
+    public virtual Player? Player { get; set; }
 }

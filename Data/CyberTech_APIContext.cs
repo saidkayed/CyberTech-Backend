@@ -1,5 +1,4 @@
-﻿using CyberTech_Backend.Model;
-using CyberTech_Backend.Models;
+﻿using CyberTech_Backend.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace CyberTech_Backend.Data;
@@ -36,7 +35,7 @@ public class CyberTech_APIContext : DbContext
         modelBuilder.Entity<Player>()
             .HasOne(p => p.CyberTech)
             .WithOne(c => c.Player)
-            .HasForeignKey<CyberTech>(c => c.Player.Id);
+            .HasForeignKey<CyberTech>(c => c.PlayerId);
     }
 
 }

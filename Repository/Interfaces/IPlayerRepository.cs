@@ -1,5 +1,5 @@
 ﻿using CyberTech_Backend.Controllers.DTO;
-using CyberTech_Backend.Model;
+using CyberTech_Backend.Models;
 
 namespace CyberTech_Backend.Repository.Interfaces;
 

@@ -1,5 +1,5 @@
 ﻿using CyberTech_Backend.Controllers.DTO;
-using CyberTech_Backend.Model;
+using CyberTech_Backend.Models;
 using CyberTech_Backend.Repository.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,6 +17,7 @@ public class PlayerController : ControllerBase
     }
 
     [HttpGet]
+    [Route("/Players")]
     public async Task<ActionResult<List<Player>>> GetAllPlayers()
     {
         var players = await _playerRepository.GetAllPlayers();
@@ -35,6 +36,7 @@ public class PlayerController : ControllerBase
     }
 
     [HttpPost]
+    [Route("/CreatePlayer")]
     public async Task<ActionResult<Player>> CreatePlayer(PlayerLoginDTO player)
     {
         var newPlayer = await _playerRepository.CreatePlayer(player);
