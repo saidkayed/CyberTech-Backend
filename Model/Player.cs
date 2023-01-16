@@ -3,6 +3,14 @@
 namespace CyberTech_Backend.Models;
 
 
+//create role enum
+public enum Role
+{
+    Admin,
+    Player
+}
+
+
 public class Player
 {
     public int Id
@@ -10,7 +18,12 @@ public class Player
         get; set;
     }
 
-    public string Username
+    public Role Role
+    {
+        get; set;
+    }
+
+    public string? Username
     {
         get; set;
     }
@@ -22,11 +35,11 @@ public class Player
         get; set;
     }
 
-    public string Email
+    public string? Email
     {
         get; set;
     }
-    public string PasswordHash
+    public string? PasswordHash
     {
         get; set;
     }

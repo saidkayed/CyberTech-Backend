@@ -1,6 +1,7 @@
 ﻿using CyberTech_Backend.Controllers.DTO;
 using CyberTech_Backend.Models;
 using CyberTech_Backend.Repository.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,8 +16,8 @@ public class PlayerController : ControllerBase
     {
         _playerRepository = playerRepository;
     }
-
-    [HttpGet]
+    
+    [HttpGet, Authorize]
     [Route("/Players")]
     public async Task<ActionResult<List<Player>>> GetAllPlayers()
     {

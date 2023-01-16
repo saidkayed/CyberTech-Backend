@@ -51,8 +51,20 @@ public class PlayerRepository : IPlayerRepository
             Email = p.Email,
         }).ToListAsync();
     }
+
+    public async Task<Player> GetPlayerByEmail(string email)
+    {
+        return await _context.Player.FirstOrDefaultAsync(p => p.Email == email);
+    }
+
     public async Task<Player> GetPlayerById(int id)
     {
         return await _context.Player.FindAsync(id);
+    }
+
+    public async Task<Player> GetPlayerByUsername(string username)
+    {
+        //get player by username
+        return await  _context.Player.FirstOrDefaultAsync(p => p.Username == username);
     }
 }

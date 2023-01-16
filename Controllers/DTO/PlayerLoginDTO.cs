@@ -1,16 +1,18 @@
-﻿namespace CyberTech_Backend.Controllers.DTO;
+﻿using CyberTech_Backend.Models;
+
+namespace CyberTech_Backend.Controllers.DTO;
 
 public class PlayerLoginDTO
 {
-    public string Email
+    public string? Email
     {
         get; set;
     }
 
-    public string Username 
+    public string? Username 
     { get; set; 
     }
-    public string Password
+    public string? Password
     {
         get; set;
     }
