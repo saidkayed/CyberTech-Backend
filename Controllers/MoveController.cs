@@ -1,7 +1,9 @@
 ﻿using CyberTech_Backend.Models;
 using CyberTech_Backend.Repository.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace CyberTech_Backend.Controllers;
 [Route("api/[controller]")]
@@ -37,7 +39,7 @@ public class MoveController : ControllerBase
         return Ok(move);
     }
 
-    [HttpPost]
+    [HttpPost, Authorize(Roles = "Admin")]
     [Route("/CreateMove")]
     public async Task<ActionResult<Move>> CreateMove([FromBody] Move move)
     {
@@ -45,14 +47,10 @@ public class MoveController : ControllerBase
         return CreatedAtAction(nameof(GetMoveById), new { id = newMove.Id }, newMove);
     }
 
-    [HttpDelete("{id}")]
+    [HttpDelete("{id}"), Authorize(Roles = "Admin")]
     public async Task<ActionResult> DeleteMove(int id)
     {
         await _moveRepository.DeleteMove(id);
         return NoContent();
     }
-
-
-
-
 }

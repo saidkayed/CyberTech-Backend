@@ -1,4 +1,5 @@
 ﻿using CyberTech_Backend.Repository.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -39,7 +40,7 @@ public class TypeController : ControllerBase
         return Ok(type);
     }
 
-    [HttpPost]
+    [HttpPost, Authorize(Roles = "Admin")]
     [Route("/CreateType")]
     public async Task<ActionResult<Models.Type>> CreateType([FromBody] Models.Type type)
     {
@@ -47,7 +48,7 @@ public class TypeController : ControllerBase
         return CreatedAtAction(nameof(GetTypeById), new { id = newType.Id }, newType);
     }
     
-    [HttpDelete("{id}")]
+    [HttpDelete("{id}"), Authorize(Roles = "Admin")]
     public async Task<ActionResult> DeleteType(int id)
     {
         await _typeRepository.DeleteType(id);
