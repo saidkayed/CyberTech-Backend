@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using CyberTech_Backend.Model;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CyberTech_Backend.Models;
 
@@ -43,5 +44,8 @@ public class Player
     {
         get; set;
     }
+    
+    [NotMapped]
+    public PlayerLocation? Location { get; set; }
 
 }

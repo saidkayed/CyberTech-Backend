@@ -113,10 +113,6 @@ namespace CyberTech_Backend.Controllers
                 (Role)Enum.Parse(typeof(Role), principal.Claims.First(c => c.Type == ClaimTypes.Role).Value));
             return newToken;
         }
-
-
-
-
     }
 
 

@@ -1,4 +1,5 @@
 using CyberTech_Backend.Data;
+using CyberTech_Backend.Hubs;
 using CyberTech_Backend.Repository;
 using CyberTech_Backend.Repository.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -6,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.Filters;
 using System.Text;
+
 
 namespace CyberTech_Backend;
 
@@ -28,7 +30,7 @@ public class Program
 
         builder.Services.AddDbContext<CyberTech_APIContext>(options =>
             options.UseSqlServer(connectionString));
-
+        builder.Services.AddSignalR();
         builder.Services.AddControllers();
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
@@ -80,10 +82,11 @@ public class Program
             app.UseSwagger();
             app.UseSwaggerUI();
         }
+
         app.UseAuthentication();
         app.UseAuthorization();
 
-
+        app.MapHub<GameHub>("/GameHub");
         app.MapControllers();
 
         app.Run();
